@@ -14,13 +14,4 @@ function App() {
     const response = await axios.get('http://127.0.0.1:8000/music/');
     console.log(response.data);
     setSongs(response.data)
-  }
-
-  return (
-    <div>
-
-    </div>
-  );
-}
-
-export default App;
+  }}
