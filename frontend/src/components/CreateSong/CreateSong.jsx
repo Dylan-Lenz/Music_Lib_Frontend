@@ -20,7 +20,7 @@ function handleSubmit(event) {
         genre: genre,
         date: date,
     };
-    props.addNewSongProp(newSong)
+    props.addNewSong(newSong)
 }
 
     return ( 
@@ -46,7 +46,7 @@ function handleSubmit(event) {
                 <input type='date' value={date} onChange={(event) => setDate(event.target.value)}/>
             </div>
             <div>
-                <button type='submit'>Add</button>
+                <button type='submit'>Add a Song</button>
             </div>
         </form>
      );

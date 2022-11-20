@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 
 
 
 function MusicTable(props) {
+    
     return (
         <div>
             <table>
@@ -26,7 +27,9 @@ function MusicTable(props) {
                                 <td>{song.album}</td>
                                 <td>{song.artist}</td>
                                 <td>{song.genre}</td>
-                                <td>{song.date}</td>
+                                <td>{song.release_date}</td>
+                                <button>DELETE</button>
+                                <button>EDIT</button>
                             </tr>
                         );
                     })}
