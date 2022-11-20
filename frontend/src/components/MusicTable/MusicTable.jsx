@@ -4,17 +4,6 @@ import React, { useState } from 'react';
 
 
 function MusicTable(props) {
-
-    const [songs, setSongs] = useState(
-        [{
-        title: 'testTitle',
-        album: 'testAlbum',
-        artist: 'testArtist',
-        genre: 'testGenre',
-        release_date: '12-12-2012',
-        }]
-    )
-
     return (
         <div>
             <table>
@@ -29,14 +18,18 @@ function MusicTable(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>testTitle</td>
-                        <td>testAlbum</td>
-                        <td>testArtist</td>
-                        <td>testGenre</td>
-                        <td>12-12-2012</td>
-                    </tr>
+                    {props.parentSongs.map((song, index) => {
+                        return (
+                            <tr>
+                                <td>{index + 1}</td>
+                                <td>{song.title}</td>
+                                <td>{song.album}</td>
+                                <td>{song.artist}</td>
+                                <td>{song.genre}</td>
+                                <td>{song.date}</td>
+                            </tr>
+                        );
+                    })}
                 </tbody>
             </table>
         </div>

@@ -19,7 +19,8 @@ function handleSubmit(event) {
         artist: artist,
         genre: genre,
         date: date,
-    }
+    };
+    props.addNewSongProp(newSong)
 }
 
     return ( 
