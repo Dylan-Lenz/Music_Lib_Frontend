@@ -9,7 +9,6 @@ const CreateSong = (props) =>{
     const [release_date, setReleaseDate] = useState('');
 
         function handleSubmit(event) {
-            event.preventDefault();
             let newSong = {
                 title: title,
                 album: album,

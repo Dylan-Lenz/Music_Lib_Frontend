@@ -1,27 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 
 
 
-function MusicTable(props) {
+export default function MusicTable(props) {
+
+    const [search, setSearch] = useState('')
     
+
     return (
-        <table>
-            <thead>
-                <tr>
-                    <th>Index</th>
-                    <th>Title</th>
-                    <th>Album</th>
-                    <th>Artist</th>
-                    <th>Genre</th>
-                    <th>Release Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                {props.parentSongs.map((song, index) => {
+        <body>
+            <input
+                type="text" 
+                placeholder="Search by Title"
+                onChange={(event) => {
+                setSearch(event.target.value)
+            }}/>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Album</th>
+                        <th>Artist</th>
+                        <th>Genre</th>
+                        <th>Release Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {props.parentSongs.filter((song) => {
+                    return search.toLowerCase() === '' ? song : song.title.toLowerCase()
+                    .includes(search)}).map((song, index) => {
                     return (
-                        <tr>
-                            <td>{index + 1}</td>
+                        <tr key={index}>
                             <td>{song.title}</td>
                             <td>{song.album}</td>
                             <td>{song.artist}</td>
@@ -31,9 +41,7 @@ function MusicTable(props) {
                     );
                 })}
             </tbody>
-        </table>
+            </table>
+        </body>
     )
-
 }
-
-export default MusicTable;

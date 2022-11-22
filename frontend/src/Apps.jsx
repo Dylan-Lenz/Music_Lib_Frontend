@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import MusicTable from './components/MusicTable/MusicTable';
 import CreateSong from './components/CreateSong/CreateSong';
+import MusicTable from './components/MusicTable/MusicTable';
 import axios from 'axios';
 
 
 
-function App() {
+export default function App() {
 
   const [songs, setSongs] = useState([]);
   
@@ -31,5 +31,3 @@ function App() {
     </body>
   );
 }
-
-export default App;
