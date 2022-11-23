@@ -1,16 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 
-export default function SearchBar(props, event) {
-    const [searchTerm, setSearchTerm] = useState ([]) 
 
-        <input
-            type="text" 
-            placeholder="Filter Library Results"
-            onChange={(event) => {
-            setSearchTerm(event.target.value)
-            }}
-        />
-}
 
     
+
+
+export default function SearchBar(props) {
+   
+   
+    return (
+        <div className='SearchBar'>
+            <input
+                type="text" 
+                placeholder="Search by Title"
+                onChange={(event) => {
+                props.parentSearch(event.target.value)
+            }}/>
+        </div>
+    )
+}
