@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import CreateSong from './components/CreateSong/CreateSong';
 import MusicTable from './components/MusicTable/MusicTable';
-import axios from 'axios';
+import styled from 'styled-components';
 
-
+ 
 
 export default function App() {
 
@@ -25,9 +26,19 @@ export default function App() {
   }
 
   return (
-    <body style={{backgroundImage: `url(https://www.comstocksmag.com/sites/main/files/imagecache/lightbox/main-images/0417_blog_lead_ss.jpg)`}}>
-      <MusicTable parentSongs={songs}/>
+    <BODY style={{backgroundImage: `url(https://www.comstocksmag.com/sites/main/files/imagecache/lightbox/main-images/0417_blog_lead_ss.jpg)`}}>
+      <MusicTable parentSongs={songs} />
       <CreateSong addNewSongProp={addNewSong}/>
-    </body>
+    </BODY>  
   );
 }
+
+//styling...
+
+const BODY = styled.body`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: center;
+  background-size: cover;
+`;
