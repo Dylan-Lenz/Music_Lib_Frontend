@@ -12,8 +12,7 @@ export default function App() {
   
   useEffect(() => {
     getAllSongs();
-    addNewSong();
-  }, []);
+  }, [addNewSong]);
 
   async function getAllSongs(){
     const getSongs = await axios.get('http://127.0.0.1:8000/music/');
@@ -32,6 +31,7 @@ export default function App() {
     </BODY>  
   );
 }
+
 
 //styling...
 

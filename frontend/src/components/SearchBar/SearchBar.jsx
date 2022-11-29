@@ -1,20 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 
-export default function SearchBar(props) {
-   
+export default function SearchBar({updateSearches}) {
+
+    const [search, setSearch] = useState('');
+    
+    const handSub = (e) => {
+        e.preventDefault();
+        updateSearches(search);
+    };
+            
     return (
-        <div>
+        <form onSubmit={handSub}>
             <INPUT
-                type="text" 
+                type="text"
                 placeholder="Search..."
-                onChange={(event) => {props.searchProp(event.target.value)
-            }}/>
-        </div>
+                onChange={(e) => setSearch(e.target.v)
+            }/>
+        </form>
     )
 }
- 
+
 const INPUT = styled.input `
         background: #121114;
         color: #F5B260;

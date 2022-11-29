@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchBar from '../SearchBar/SearchBar';
 import FiltButton from '../FiltButton/FiltButton';
 import styled from 'styled-components';
@@ -6,34 +6,47 @@ import styled from 'styled-components';
 
 export default function MusicTable(props) {
 
-    const [search, setSearch] = useState('');
-    const [term, setTerm] = useState('');
-    const [searchTerm, setSearchTerm] = useState([]);
+    const [searchTerm, setSearchTerm] = useState(['']);
+    const [terms, setTerms] = useState('');
+    const [searches, setSearches] = useState('');
+
+    useEffect(() => {
+        SearchTerm();
+      }), [FiltButton];
     
+    const updateTerms = () => {
+        let updatedTerms = [...terms];
+        setTerms(updatedTerms);
+    }
+
+    const updateSearches = () => {
+        let updatedSearches = [...searches];
+        setSearches(updatedSearches);
+    }
+
     const SearchTerm = () => {
-        return (
-            term === 'title' ? setSearchTerm(props.parentSongs.filter((song) => {
-                song.title.toLowerCase().includes(search)})) 
-
-            : term === 'album' ? setSearchTerm(props.parentSongs.filter((song) => {
-                song.album.toLowerCase().includes(search)}))
-
-            : term === 'artist' ? setSearchTerm(props.parentSongs.filter((song) => {
-                song.artist.toLowerCase().includes(search)}))
-            
-            : term === 'genre' ? setSearchTerm(props.parentSongs.filter((song) => {
-                song.genre.toLowerCase().includes(search)}))
-            
-            : setSearchTerm(props.parentSongs)
+        let songs = props.parentSongs
+            return (
+                terms === 'title' ? 
+                    setSearchTerm(songs.filter((song) => {
+                        return searches.toLowerCase() === '' ? song : song.title.toLowerCase().includes(searches)}))
+                : terms === 'album' ? 
+                    setSearchTerm(songs.filter((song) => {
+                        return searches.toLowerCase() === '' ? song : song.album.toLowerCase().includes(searches)}))
+                : terms === 'artist' ? setSearchTerm(songs.filter((song) => {
+                    return searches.toLowerCase() === '' ? song : song.artist.toLowerCase().includes(searches)}))
+                : terms === 'genre' ? 
+                    setSearchTerm(songs.filter((song) => {
+                        return searches.toLowerCase() === '' ? song : song.genre.toLowerCase().includes(searches)}))
+            : setSearchTerm(songs)
         );
     }
     
     return (
         <div>
             <SPAN>
-                <FiltButton termProp={setTerm}  />
-                <SearchBar searchProp={setSearch} />
-                <SearchTerm/>
+                <FiltButton updateTerms={updateTerms} />
+                <SearchBar updateSearches={updateSearches} />
             </SPAN>
             <DIV>
                 <H1>MUSIC LIBRARY</H1>

@@ -2,62 +2,49 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 
-export default function FiltButton(props) {
+export default function FiltButton({updateTerms}) {
   
     const [open, setOpen] = React.useState(false);
+    const [term, setTerm] = React.useState('');
+    
 
-    const handleOpen = () => {
+    const handOpen = () => {
         setOpen(!open);
     };
-  
-    const handleTitle = (value, event) => {
-        setOpen(false);
-        event.preventDefault();
-        return value
-    };
 
-    const handleAlbum = (event, value) => {
+    const handSub = (e) => {
         setOpen(false);
-        event.preventDefault();
-        return value
-    };
-
-    const handleArtist = (event, value) => {
-        setOpen(false);
-        event.preventDefault();
-        return props.termProp(value)
-    };
-
-    const handleGenre = (event, value) => {
-        setOpen(false);
-        event.preventDefault();
-        return value
+        e.preventDefault();
+        updateTerms(term);
     };
 
     return (
         <Div>
-            <Button onClick={handleOpen}>Filter</Button>
+            <Button onClick={handOpen}>Filter</Button>
                 {open ? (
-                    <Ul>
-                        <Li>
-                            <Buttons value = {'title'} onClick={(event) => handleTitle(event.target.value)}>Title</Buttons>
-                        </Li>
-                        <Li>
-                            <Buttons value={'album'} onClick={(event) => handleAlbum(event.target.value)}>Album</Buttons>
-                        </Li>
-                        <Li>
-                            <Buttons value={'artist'} onClick={(event) => handleArtist(event.target.value)}>Artist</Buttons>
-                        </Li>
-                        <Li>
-                            <Buttons value={'genre'} onClick={(event) => handleGenre(event.target.value)}>Genre</Buttons>
-                        </Li>
-                    </Ul>
+                    <form onSubmit={handSub}>
+                        <Ul>
+                            <Li>
+                                <Buttons onClick={() => setTerm('title')}>Title</Buttons>
+                            </Li>
+                            <Li>
+                                <Buttons onClick={() => setTerm('album')}>Album</Buttons>
+                            </Li>
+                            <Li>
+                                <Buttons onClick={() => setTerm('artist')}>Artist</Buttons>
+                            </Li>
+                            <Li>
+                                <Buttons onClick={() => setTerm('genre')}>Genre</Buttons>
+                            </Li>
+                        </Ul>
+                    </form>
                 ) : null}
             {open ? '' : ''}
         </Div>
     );
 };
 
+ 
 //styling...
 
  
